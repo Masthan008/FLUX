@@ -1,0 +1,119 @@
+name: fluxflow
+description: The Ultimate Student OS by Masthan Valli.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Core Logic
+  provider: ^6.1.1
+  intl: ^0.20.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  http: ^1.2.0
+  shared_preferences: ^2.2.2
+  path_provider: ^2.1.2
+  permission_handler: ^11.3.0
+  supabase_flutter: ^2.5.0
+  
+  # AI Integration
+  google_generative_ai: ^0.4.0
+  flutter_markdown: ^0.7.0
+
+  # Camera & AI (Biometrics) - OPTIMIZED
+  # camera: ^0.10.5 # REMOVED - 15MB+ (use image_picker only for profile photos)
+  # google_mlkit_face_detection: ^0.11.0 # REMOVED - 10MB+ (biometric auth via local_auth only)
+  image_picker: ^1.0.7
+  geolocator: ^11.0.0
+  local_auth: ^2.1.8
+
+  # QR Code
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^3.5.5
+
+  # Reports - OPTIMIZED
+  # pdf: ^3.10.4 # REMOVED - 3MB+ (use web-based PDF generation)
+  # printing: ^5.11.1 # REMOVED - 4MB+ (use share_plus for sharing)
+
+  # Alarm & Audio
+  alarm: ^5.0.0
+  audio_session: ^0.1.21
+  flutter_tts: ^4.0.2
+  flutter_foreground_task: ^8.0.0
+  speech_to_text: ^7.0.0
+
+  # UI & Design - OPTIMIZED
+  google_fonts: ^6.1.0
+  flutter_animate: ^4.5.0
+  glassmorphism: ^3.0.0
+  # flutter_inset_box_shadow: ^1.0.8 # Removed due to build errors
+  # flutter_week_view: ^1.4.4 # REMOVED - 5MB+ (duplicate calendar functionality)
+  table_calendar: ^3.1.1
+  
+  # Tools - OPTIMIZED
+  # flutter_quill: ^10.8.3 # REMOVED - 8MB+ (use simple text editor)
+  flutter_colorpicker: ^1.1.0
+  flutter_highlight: ^0.7.0
+  url_launcher: ^6.2.4
+  # webview_flutter: ^4.7.0 # REMOVED - 6MB+ (use url_launcher for external browser)
+  clipboard: ^0.1.3
+  file_picker: ^8.0.0+1
+  open_file: ^3.3.2
+  
+  # Math
+  math_expressions: ^2.5.0
+  flutter_math_fork: ^0.7.2  # LaTeX math formula rendering
+  audioplayers: ^6.5.1
+  
+  # Notifications
+  flutter_local_notifications: ^17.0.0
+  
+  # NEW: Performance & UX Enhancements
+  share_plus: ^7.2.0              # For sharing/exporting (replaces printing)
+  showcaseview: ^2.0.3            # For onboarding tour
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.8
+  hive_generator: ^2.0.1
+  flutter_launcher_icons: ^0.13.1
+
+# CRITICAL OVERRIDES
+dependency_overrides:
+  intl: ^0.20.2
+  flutter_inappwebview: ^6.1.5
+  flutter_keyboard_visibility: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/sounds/
+    - assets/images/
+    - assets/images/flowcharts/
+
+# Icon Generation Configuration
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/images/app_icon.png"
+    background_color: "#0A0A0F"
+    theme_color: "#00E5FF"
+  windows:
+    generate: true
+    image_path: "assets/images/app_icon.png"
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: "assets/images/app_icon.png"
+
