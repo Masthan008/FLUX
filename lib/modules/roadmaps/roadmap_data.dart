@@ -1560,6 +1560,343 @@ class RoadmapRepository {
         ),
       ],
     ),
+
+    // Cybersecurity Specialist
+    TechRoadmap(
+      title: 'Cybersecurity Specialist',
+      description: 'Protecting systems, networks, and data from cyber threats.',
+      category: 'Security',
+      duration: '10-12 months',
+      icon: Icons.security,
+      color: Colors.red,
+      steps: [
+        RoadmapStep(
+          title: 'Security Fundamentals',
+          description: 'Core concepts and threat landscape.',
+          duration: '3-4 weeks',
+          topics: [
+            TopicContent(
+              title: 'CIA Triad',
+              content: 'Confidentiality, Integrity, Availability - the foundation of information security. Understanding threats, vulnerabilities, and risks.',
+            ),
+            TopicContent(
+              title: 'Attack Vectors',
+              content: 'Phishing, malware, ransomware, DDoS, man-in-the-middle. Understanding how attackers operate.',
+            ),
+            TopicContent(
+              title: 'Security Frameworks',
+              content: 'NIST Cybersecurity Framework, ISO 27001, CIS Controls. Compliance requirements (GDPR, HIPAA, PCI-DSS).',
+            ),
+          ],
+          resources: [
+            'NIST Cybersecurity Framework',
+            'OWASP Top 10',
+            'Security+ Study Guide',
+          ],
+        ),
+        RoadmapStep(
+          title: 'Network Security',
+          description: 'Securing network infrastructure.',
+          duration: '4-5 weeks',
+          topics: [
+            TopicContent(
+              title: 'Firewalls & IDS/IPS',
+              content: 'Firewall rules, stateful vs stateless inspection. Intrusion Detection/Prevention Systems. Snort, Suricata.',
+            ),
+            TopicContent(
+              title: 'VPN & Encryption',
+              content: 'Virtual Private Networks. IPSec, SSL/TLS protocols. End-to-end encryption. Certificate management.',
+            ),
+            TopicContent(
+              title: 'Network Monitoring',
+              content: 'Wireshark for packet analysis. NetFlow analysis. Detecting anomalies and suspicious traffic patterns.',
+            ),
+          ],
+          resources: [
+            'Wireshark Network Analysis',
+            'Zero Trust Security Model',
+          ],
+        ),
+        RoadmapStep(
+          title: 'Penetration Testing',
+          description: 'Ethical hacking and vulnerability assessment.',
+          duration: '6-8 weeks',
+          topics: [
+            TopicContent(
+              title: 'Reconnaissance & Scanning',
+              content: 'OSINT (Open Source Intelligence). Nmap for network scanning. Vulnerability scanners (Nessus, OpenVAS).',
+            ),
+            TopicContent(
+              title: 'Exploitation Techniques',
+              content: 'Metasploit Framework. SQL injection, XSS, CSRF. Buffer overflows. Privilege escalation.',
+            ),
+            TopicContent(
+              title: 'Web Application Security',
+              content: 'Burp Suite for web app testing. OWASP Top 10 vulnerabilities. API security testing.',
+            ),
+          ],
+          resources: [
+            'Metasploit Unleashed',
+            'Web Application Hacker\'s Handbook',
+            'HackTheBox Practice',
+          ],
+        ),
+        RoadmapStep(
+          title: 'Incident Response & Forensics',
+          description: 'Handling security breaches.',
+          duration: '4-5 weeks',
+          topics: [
+            TopicContent(
+              title: 'Incident Response Lifecycle',
+              content: 'Preparation, Detection, Containment, Eradication, Recovery, Lessons Learned. NIST IR framework.',
+            ),
+            TopicContent(
+              title: 'Digital Forensics',
+              content: 'Evidence collection and preservation. Memory forensics, disk imaging. Chain of custody.',
+            ),
+            TopicContent(
+              title: 'SIEM & Log Analysis',
+              content: 'Security Information and Event Management. Splunk, ELK Stack. Correlation rules and alerting.',
+            ),
+          ],
+          resources: [
+            'Incident Handler\'s Handbook',
+            'Practical Malware Analysis',
+          ],
+        ),
+      ],
+    ),
+
+    // Data Science Engineer
+    TechRoadmap(
+      title: 'Data Science Engineer',
+      description: 'Extracting insights from data using statistics, ML, and visualization.',
+      category: 'Data Science',
+      duration: '10-12 months',
+      icon: Icons.analytics,
+      color: Colors.orange,
+      steps: [
+        RoadmapStep(
+          title: 'Mathematics & Statistics',
+          description: 'The foundation of data science.',
+          duration: '4-6 weeks',
+          topics: [
+            TopicContent(
+              title: 'Probability & Statistics',
+              content: 'Distributions (Normal, Binomial, Poisson). Hypothesis testing, p-values, confidence intervals. Bayesian statistics.',
+            ),
+            TopicContent(
+              title: 'Linear Algebra',
+              content: 'Vectors, matrices, eigenvalues. Matrix operations for ML. Dimensionality reduction (PCA, SVD).',
+            ),
+            TopicContent(
+              title: 'Calculus & Optimization',
+              content: 'Derivatives, gradients. Gradient descent algorithm. Convex optimization basics.',
+            ),
+          ],
+          resources: [
+            'Mathematics for Machine Learning',
+            'StatQuest YouTube Channel',
+          ],
+        ),
+        RoadmapStep(
+          title: 'Python for Data Science',
+          description: 'The data scientist\'s toolkit.',
+          duration: '3-4 weeks',
+          topics: [
+            TopicContent(
+              title: 'NumPy & Pandas',
+              content: 'Array operations, broadcasting. DataFrames, groupby, merge, pivot tables. Time series analysis.',
+            ),
+            TopicContent(
+              title: 'Data Visualization',
+              content: 'Matplotlib, Seaborn for statistical plots. Plotly for interactive dashboards. Storytelling with data.',
+            ),
+            TopicContent(
+              title: 'Jupyter Notebooks',
+              content: 'Interactive development. Markdown documentation. Reproducible analysis workflows.',
+            ),
+          ],
+          resources: [
+            'Python Data Science Handbook',
+            'Pandas Documentation',
+          ],
+        ),
+        RoadmapStep(
+          title: 'Machine Learning Fundamentals',
+          description: 'Core ML algorithms and concepts.',
+          duration: '6-8 weeks',
+          topics: [
+            TopicContent(
+              title: 'Supervised Learning',
+              content: 'Linear/Logistic Regression. Decision Trees, Random Forests. Support Vector Machines. Model evaluation metrics.',
+            ),
+            TopicContent(
+              title: 'Unsupervised Learning',
+              content: 'K-Means clustering, DBSCAN. Hierarchical clustering. Anomaly detection.',
+            ),
+            TopicContent(
+              title: 'Feature Engineering',
+              content: 'Encoding categorical variables. Scaling and normalization. Feature selection techniques.',
+            ),
+          ],
+          resources: [
+            'Scikit-learn Documentation',
+            'Hands-On Machine Learning',
+          ],
+        ),
+        RoadmapStep(
+          title: 'Deep Learning',
+          description: 'Neural networks and modern architectures.',
+          duration: '6-8 weeks',
+          topics: [
+            TopicContent(
+              title: 'Neural Network Basics',
+              content: 'Perceptrons, activation functions. Backpropagation. Loss functions and optimizers (SGD, Adam).',
+            ),
+            TopicContent(
+              title: 'CNNs for Computer Vision',
+              content: 'Convolutional layers, pooling. Transfer learning with pre-trained models (ResNet, EfficientNet).',
+            ),
+            TopicContent(
+              title: 'Transformers for NLP',
+              content: 'Attention mechanism. BERT, GPT architectures. Foundation of modern NLP.',
+            ),
+          ],
+          resources: [
+            'Deep Learning Specialization (Coursera)',
+            'PyTorch Tutorials',
+          ],
+        ),
+        RoadmapStep(
+          title: 'MLOps & Production',
+          description: 'Deploying models at scale.',
+          duration: '4-5 weeks',
+          topics: [
+            TopicContent(
+              title: 'Model Deployment',
+              content: 'REST APIs with FastAPI/Flask. Model serving (TensorFlow Serving, TorchServe). Containerization.',
+            ),
+            TopicContent(
+              title: 'Experiment Tracking',
+              content: 'MLflow, Weights & Biases. Versioning datasets and models. Reproducibility.',
+            ),
+            TopicContent(
+              title: 'Monitoring & Retraining',
+              content: 'Model drift detection. A/B testing. Automated retraining pipelines.',
+            ),
+          ],
+          resources: [
+            'MLOps Principles',
+            'MLflow Documentation',
+          ],
+        ),
+      ],
+    ),
+
+    // Cloud Solutions Architect
+    TechRoadmap(
+      title: 'Cloud Solutions Architect',
+      description: 'Designing scalable, resilient cloud infrastructure.',
+      category: 'Cloud Computing',
+      duration: '8-10 months',
+      icon: Icons.cloud_queue,
+      color: Colors.cyan,
+      steps: [
+        RoadmapStep(
+          title: 'Cloud Fundamentals',
+          description: 'Understanding cloud computing models.',
+          duration: '2-3 weeks',
+          topics: [
+            TopicContent(
+              title: 'Service Models',
+              content: 'IaaS (Infrastructure), PaaS (Platform), SaaS (Software). When to use each model.',
+            ),
+            TopicContent(
+              title: 'Deployment Models',
+              content: 'Public, Private, Hybrid, Multi-cloud. Trade-offs and use cases.',
+            ),
+            TopicContent(
+              title: 'Cloud Economics',
+              content: 'CapEx vs OpEx. Pay-as-you-go pricing. Total Cost of Ownership (TCO) analysis.',
+            ),
+          ],
+          resources: [
+            'AWS Cloud Practitioner',
+            'Cloud Computing Concepts',
+          ],
+        ),
+        RoadmapStep(
+          title: 'Core Cloud Services',
+          description: 'Mastering essential cloud services.',
+          duration: '6-8 weeks',
+          topics: [
+            TopicContent(
+              title: 'Compute Services',
+              content: 'EC2/VMs, Lambda/Functions, ECS/AKS/GKE for containers. Auto-scaling groups.',
+            ),
+            TopicContent(
+              title: 'Storage Solutions',
+              content: 'Object storage (S3/Blob), Block storage (EBS), File systems (EFS/Azure Files). Lifecycle policies.',
+            ),
+            TopicContent(
+              title: 'Networking',
+              content: 'VPC/VNet, Subnets, Route Tables. Load Balancers (ALB, NLB). CDN (CloudFront, Azure CDN).',
+            ),
+          ],
+          resources: [
+            'AWS Solutions Architect Associate',
+            'Azure Fundamentals',
+          ],
+        ),
+        RoadmapStep(
+          title: 'High Availability & Disaster Recovery',
+          description: 'Building resilient systems.',
+          duration: '3-4 weeks',
+          topics: [
+            TopicContent(
+              title: 'Multi-Region Architecture',
+              content: 'Active-active vs active-passive. Global load balancing. Data replication strategies.',
+            ),
+            TopicContent(
+              title: 'Backup & Recovery',
+              content: 'RPO (Recovery Point Objective) and RTO (Recovery Time Objective). Automated backups. Point-in-time recovery.',
+            ),
+            TopicContent(
+              title: 'Fault Tolerance',
+              content: 'Circuit breakers, retries, timeouts. Chaos engineering principles.',
+            ),
+          ],
+          resources: [
+            'AWS Well-Architected Framework',
+            'Disaster Recovery Strategies',
+          ],
+        ),
+        RoadmapStep(
+          title: 'Security & Compliance',
+          description: 'Securing cloud workloads.',
+          duration: '4-5 weeks',
+          topics: [
+            TopicContent(
+              title: 'Identity & Access Management',
+              content: 'IAM policies, roles, and groups. Principle of least privilege. MFA enforcement.',
+            ),
+            TopicContent(
+              title: 'Network Security',
+              content: 'Security groups, NACLs, WAF (Web Application Firewall). DDoS protection.',
+            ),
+            TopicContent(
+              title: 'Encryption & Secrets',
+              content: 'KMS for key management. Secrets Manager/Key Vault. Encryption at rest and in transit.',
+            ),
+          ],
+          resources: [
+            'AWS Security Best Practices',
+            'Cloud Security Alliance',
+          ],
+        ),
+      ],
+    ),
   ];
 
   // Helper methods for filtering and searching

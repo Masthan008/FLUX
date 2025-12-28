@@ -134,7 +134,12 @@ class _NovaChatScreenState extends State<NovaChatScreen> {
                 ],
               ),
               child: const Icon(Icons.auto_awesome, color: Colors.white, size: 20),
-            ),
+            ).animate(onPlay: (controller) => controller.repeat())
+              .shimmer(duration: 3.seconds, color: Colors.white.withOpacity(0.5))
+              .then()
+              .rotate(duration: 2.seconds, begin: 0, end: 0.05)
+              .then()
+              .rotate(duration: 2.seconds, begin: 0.05, end: 0),
             const SizedBox(width: 12),
             Text(
               'Flux AI',
@@ -292,6 +297,7 @@ class _NovaChatScreenState extends State<NovaChatScreen> {
               )
                   .animate(onPlay: (controller) => controller.repeat(reverse: true))
                   .fadeIn(duration: 600.ms)
+                  .scale(begin: const Offset(0.9, 0.9), end: const Offset(1.0, 1.0), duration: 800.ms)
                   .shimmer(duration: 1.5.seconds, color: Colors.purple.withOpacity(0.3)),
 
             // Input Bar
@@ -452,7 +458,19 @@ class _NovaChatScreenState extends State<NovaChatScreen> {
           ],
         ],
       ),
-    );
+    ).animate()
+      .fadeIn(duration: 400.ms)
+      .slideX(
+        begin: message.isUser ? 0.3 : -0.3,
+        end: 0,
+        duration: 500.ms,
+        curve: Curves.easeOutCubic,
+      )
+      .scale(
+        begin: const Offset(0.9, 0.9),
+        end: const Offset(1.0, 1.0),
+        duration: 400.ms,
+      );
   }
 }
 

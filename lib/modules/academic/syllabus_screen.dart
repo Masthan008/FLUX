@@ -2309,6 +2309,225 @@ d.f = 3.14; // Now f is active, i is overwritten''',
         },
       ],
     },
+    'MATH': {
+      'fullName': 'Mathematics',
+      'icon': Icons.calculate,
+      'color': Colors.blue,
+      'description': 'Master essential mathematical concepts with formulas, theorems, and problem-solving techniques!',
+      'examTips': 'Practice formula derivations, memorize key identities, solve previous year questions extensively.',
+      'units': [
+        {
+          'number': 'Unit 1',
+          'title': 'Calculus - Differentiation',
+          'importance': 'Core unit - 25-30% weightage in exams',
+          'studyTips': 'Practice chain rule, product rule extensively. Memorize standard derivatives.',
+          'topics': [
+            {
+              'name': 'Basic Derivatives',
+              'content': 'Fundamental differentiation rules and standard derivatives of common functions.',
+              'examPoint': '⭐ Memorize: d/dx(xⁿ) = nxⁿ⁻¹, d/dx(eˣ) = eˣ, d/dx(ln x) = 1/x',
+              'application': 'Rate of change problems, optimization, physics (velocity, acceleration).',
+              'shortcuts': [
+                {'title': '📐 Power Rule', 'content': r'\frac{d}{dx}(x^n) = nx^{n-1}', 'isFormula': true},
+                {'title': '📐 Exponential', 'content': r'\frac{d}{dx}(e^x) = e^x', 'isFormula': true},
+                {'title': '📐 Logarithm', 'content': r'\frac{d}{dx}(\ln x) = \frac{1}{x}', 'isFormula': true},
+                {'title': '📐 Constant', 'content': r'\frac{d}{dx}(c) = 0', 'isFormula': true},
+              ],
+            },
+            {
+              'name': 'Trigonometric Derivatives',
+              'content': 'Derivatives of sine, cosine, tangent and their inverses.',
+              'examPoint': '⭐ sin→cos, cos→-sin, tan→sec². Remember signs!',
+              'application': 'Wave motion, oscillations, signal processing.',
+              'shortcuts': [
+                {'title': '📐 Sine', 'content': r'\frac{d}{dx}(\sin x) = \cos x', 'isFormula': true},
+                {'title': '📐 Cosine', 'content': r'\frac{d}{dx}(\cos x) = -\sin x', 'isFormula': true},
+                {'title': '📐 Tangent', 'content': r'\frac{d}{dx}(\tan x) = \sec^2 x', 'isFormula': true},
+                {'title': '📐 Cotangent', 'content': r'\frac{d}{dx}(\cot x) = -\csc^2 x', 'isFormula': true},
+              ],
+            },
+            {
+              'name': 'Chain Rule & Product Rule',
+              'content': 'Composite function differentiation and product of functions.',
+              'examPoint': '⭐ Chain: dy/dx = dy/du × du/dx. Product: (uv)\' = u\'v + uv\'',
+              'application': 'Complex function analysis, related rates problems.',
+              'shortcuts': [
+                {'title': '📐 Chain Rule', 'content': r'\frac{d}{dx}f(g(x)) = f^{\prime}(g(x)) \cdot g^{\prime}(x)', 'isFormula': true},
+                {'title': '📐 Product Rule', 'content': r'\frac{d}{dx}(uv) = u^{\prime}v + uv^{\prime}', 'isFormula': true},
+                {'title': '📐 Quotient Rule', 'content': r'\frac{d}{dx}\left(\frac{u}{v}\right) = \frac{u^{\prime}v - uv^{\prime}}{v^2}', 'isFormula': true},
+              ],
+            },
+          ],
+        },
+        {
+          'number': 'Unit 2',
+          'title': 'Calculus - Integration',
+          'importance': 'High weightage - 25-30% in exams',
+          'studyTips': 'Practice integration by parts, substitution method. Know standard integrals.',
+          'topics': [
+            {
+              'name': 'Basic Integrals',
+              'content': 'Fundamental integration formulas and techniques.',
+              'examPoint': '⭐ Integration is reverse of differentiation. Don\'t forget +C constant!',
+              'application': 'Area under curves, volume calculations, physics (displacement from velocity).',
+              'shortcuts': [
+                {'title': '📐 Power Rule', 'content': r'\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)', 'isFormula': true},
+                {'title': '📐 Exponential', 'content': r'\int e^x dx = e^x + C', 'isFormula': true},
+                {'title': '📐 Reciprocal', 'content': r'\int \frac{1}{x} dx = \ln|x| + C', 'isFormula': true},
+                {'title': '📐 Sine', 'content': r'\int \sin x dx = -\cos x + C', 'isFormula': true},
+                {'title': '📐 Cosine', 'content': r'\int \cos x dx = \sin x + C', 'isFormula': true},
+              ],
+            },
+            {
+              'name': 'Definite Integrals',
+              'content': 'Integration with limits, area calculation.',
+              'examPoint': '⭐ Fundamental theorem: ∫ₐᵇ f(x)dx = F(b) - F(a)',
+              'application': 'Area between curves, work done, probability distributions.',
+              'shortcuts': [
+                {'title': '📐 Fundamental Theorem', 'content': r'\int_a^b f(x) dx = F(b) - F(a)', 'isFormula': true},
+                {'title': '📐 Area Formula', 'content': r'A = \int_a^b |f(x)| dx', 'isFormula': true},
+                {'title': '⚡ Property', 'content': r'\int_a^b f(x) dx = -\int_b^a f(x) dx', 'isFormula': true},
+              ],
+            },
+          ],
+        },
+        {
+          'number': 'Unit 3',
+          'title': 'Linear Algebra',
+          'importance': 'Matrix operations - 20-25% weightage',
+          'studyTips': 'Practice matrix multiplication, determinants, eigenvalue problems.',
+          'topics': [
+            {
+              'name': 'Matrix Operations',
+              'content': 'Addition, multiplication, transpose, inverse of matrices.',
+              'examPoint': '⭐ AB ≠ BA (not commutative). (AB)ᵀ = BᵀAᵀ',
+              'application': 'Linear transformations, computer graphics, data science.',
+              'shortcuts': [
+                {'title': '📐 Transpose', 'content': r'(AB)^T = B^T A^T', 'isFormula': true},
+                {'title': '📐 Inverse', 'content': r'AA^{-1} = A^{-1}A = I', 'isFormula': true},
+                {'title': '📐 Determinant', 'content': r'\det(AB) = \det(A) \cdot \det(B)', 'isFormula': true},
+              ],
+            },
+            {
+              'name': 'Eigenvalues & Eigenvectors',
+              'content': 'Characteristic equation, eigenvalue decomposition.',
+              'examPoint': '⭐ Av = λv. Characteristic equation: det(A - λI) = 0',
+              'application': 'Principal component analysis, stability analysis, quantum mechanics.',
+              'shortcuts': [
+                {'title': '📐 Eigenvalue Equation', 'content': r'Av = \lambda v', 'isFormula': true},
+                {'title': '📐 Characteristic Eq', 'content': r'\det(A - \lambda I) = 0', 'isFormula': true},
+                {'title': '📐 Trace', 'content': r'\sum \lambda_i = \text{tr}(A)', 'isFormula': true},
+              ],
+            },
+          ],
+        },
+        {
+          'number': 'Unit 4',
+          'title': 'Trigonometry',
+          'importance': 'Identities & equations - 15-20% weightage',
+          'studyTips': 'Memorize fundamental identities, practice angle transformations.',
+          'topics': [
+            {
+              'name': 'Fundamental Identities',
+              'content': 'Pythagorean, reciprocal, and quotient identities.',
+              'examPoint': '⭐ sin²θ + cos²θ = 1, tan θ = sin θ/cos θ',
+              'application': 'Wave analysis, signal processing, navigation.',
+              'shortcuts': [
+                {'title': '📐 Pythagorean', 'content': r'\sin^2\theta + \cos^2\theta = 1', 'isFormula': true},
+                {'title': '📐 Tangent', 'content': r'\tan\theta = \frac{\sin\theta}{\cos\theta}', 'isFormula': true},
+                {'title': '📐 Secant', 'content': r'1 + \tan^2\theta = \sec^2\theta', 'isFormula': true},
+                {'title': '📐 Cosecant', 'content': r'1 + \cot^2\theta = \csc^2\theta', 'isFormula': true},
+              ],
+            },
+            {
+              'name': 'Sum & Difference Formulas',
+              'content': 'Addition and subtraction angle formulas.',
+              'examPoint': '⭐ sin(A±B) = sinA cosB ± cosA sinB',
+              'application': 'Fourier analysis, AC circuit analysis.',
+              'shortcuts': [
+                {'title': '📐 Sin Sum', 'content': r'\sin(A+B) = \sin A \cos B + \cos A \sin B', 'isFormula': true},
+                {'title': '📐 Cos Sum', 'content': r'\cos(A+B) = \cos A \cos B - \sin A \sin B', 'isFormula': true},
+                {'title': '📐 Tan Sum', 'content': r'\tan(A+B) = \frac{\tan A + \tan B}{1 - \tan A \tan B}', 'isFormula': true},
+              ],
+            },
+            {
+              'name': 'Double & Half Angle Formulas',
+              'content': 'Formulas for 2θ and θ/2 angles.',
+              'examPoint': '⭐ sin 2θ = 2 sin θ cos θ, cos 2θ = cos²θ - sin²θ',
+              'application': 'Power calculations in AC circuits, wave superposition.',
+              'shortcuts': [
+                {'title': '📐 Sin Double', 'content': r'\sin 2\theta = 2\sin\theta \cos\theta', 'isFormula': true},
+                {'title': '📐 Cos Double', 'content': r'\cos 2\theta = \cos^2\theta - \sin^2\theta', 'isFormula': true},
+                {'title': '📐 Cos Double Alt', 'content': r'\cos 2\theta = 2\cos^2\theta - 1 = 1 - 2\sin^2\theta', 'isFormula': true},
+                {'title': '📐 Tan Double', 'content': r'\tan 2\theta = \frac{2\tan\theta}{1-\tan^2\theta}', 'isFormula': true},
+              ],
+            },
+          ],
+        },
+        {
+          'number': 'Unit 5',
+          'title': 'Statistics & Probability',
+          'importance': 'Data analysis - 15-20% weightage',
+          'studyTips': 'Understand mean, median, mode. Practice probability problems.',
+          'topics': [
+            {
+              'name': 'Measures of Central Tendency',
+              'content': 'Mean, median, mode - central value representations.',
+              'examPoint': '⭐ Mean = Σx/n, Median = middle value, Mode = most frequent',
+              'application': 'Data analysis, machine learning, quality control.',
+              'shortcuts': [
+                {'title': '📐 Mean', 'content': r'\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i', 'isFormula': true},
+                {'title': '📐 Variance', 'content': r'\sigma^2 = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2', 'isFormula': true},
+                {'title': '📐 Std Deviation', 'content': r'\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2}', 'isFormula': true},
+              ],
+            },
+            {
+              'name': 'Probability Basics',
+              'content': 'Fundamental probability rules and theorems.',
+              'examPoint': '⭐ P(A∪B) = P(A) + P(B) - P(A∩B), 0 ≤ P(E) ≤ 1',
+              'application': 'Risk analysis, machine learning, game theory.',
+              'shortcuts': [
+                {'title': '📐 Addition Rule', 'content': r'P(A \cup B) = P(A) + P(B) - P(A \cap B)', 'isFormula': true},
+                {'title': '📐 Multiplication', 'content': r'P(A \cap B) = P(A) \cdot P(B|A)', 'isFormula': true},
+                {'title': '📐 Complement', 'content': r'P(A^c) = 1 - P(A)', 'isFormula': true},
+                {'title': '📐 Bayes Theorem', 'content': r'P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}', 'isFormula': true},
+              ],
+            },
+          ],
+        },
+        {
+          'number': 'Unit 6',
+          'title': 'Differential Equations',
+          'importance': 'Applied mathematics - 15-20% weightage',
+          'studyTips': 'Learn separation of variables, integrating factor method.',
+          'topics': [
+            {
+              'name': 'First Order Differential Equations',
+              'content': 'Separable equations, linear equations, exact equations.',
+              'examPoint': '⭐ dy/dx + P(x)y = Q(x). Integrating factor: e^(∫P dx)',
+              'application': 'Population growth, radioactive decay, circuit analysis.',
+              'shortcuts': [
+                {'title': '📐 Separable', 'content': r'\frac{dy}{dx} = f(x)g(y) \Rightarrow \int\frac{dy}{g(y)} = \int f(x)dx', 'isFormula': true},
+                {'title': '📐 Linear Form', 'content': r'\frac{dy}{dx} + P(x)y = Q(x)', 'isFormula': true},
+                {'title': '📐 Integrating Factor', 'content': r'I.F. = e^{\int P(x)dx}', 'isFormula': true},
+                {'title': '📐 Solution', 'content': r'y \cdot I.F. = \int Q(x) \cdot I.F. \, dx + C', 'isFormula': true},
+              ],
+            },
+            {
+              'name': 'Second Order Differential Equations',
+              'content': 'Homogeneous and non-homogeneous linear equations.',
+              'examPoint': '⭐ ay\'\' + by\' + cy = 0. Characteristic equation: am² + bm + c = 0',
+              'application': 'Mechanical vibrations, electrical circuits, control systems.',
+              'shortcuts': [
+                {'title': '📐 Standard Form', 'content': r'a\frac{d^2y}{dx^2} + b\frac{dy}{dx} + cy = 0', 'isFormula': true},
+                {'title': '📐 Characteristic Eq', 'content': r'am^2 + bm + c = 0', 'isFormula': true},
+                {'title': '📐 General Solution', 'content': r'y = C_1e^{m_1x} + C_2e^{m_2x}', 'isFormula': true},
+              ],
+            },
+          ],
+        },
+      ],
+    },
   };
 
   @override

@@ -76,6 +76,17 @@ dependencies:
   # NEW: Performance & UX Enhancements
   share_plus: ^7.2.0              # For sharing/exporting (replaces printing)
   showcaseview: ^2.0.3            # For onboarding tour
+  network_info_plus: ^7.0.0
+  dart_ping: ^9.0.1
+  fl_chart: ^1.1.1
+  connectivity_plus: ^7.0.0
+  dartssh2: ^2.13.0
+  xterm: ^4.0.0
+  flutter_secure_storage: ^10.0.0
+  
+  # 3D Model Viewer
+  model_viewer_plus: ^1.7.0       # For viewing 3D models with AR support
+
 
 dev_dependencies:
   flutter_test:
@@ -97,6 +108,12 @@ flutter:
     - assets/sounds/
     - assets/images/
     - assets/images/flowcharts/
+    - assets/engineering_hub/mech/
+    - assets/engineering_hub/civil/
+    - assets/engineering_hub/cse/
+    - assets/engineering_hub/ece/
+    - assets/engineering_hub/graphics/
+    - assets/3d_models/
 
 # Icon Generation Configuration
 flutter_launcher_icons:

@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart'; // Critical Import
 import 'package:provider/provider.dart';
 import 'package:alarm/alarm.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 // Imports from your project structure
 import 'theme/app_theme.dart';
@@ -145,8 +146,16 @@ void main() async {
     print("✅ Enhanced Data Management Service Initialized");
 
     // --- Notification Service Init ---
+    // Initialize timezone database BEFORE notification service
+    tz.initializeTimeZones();
+    print('✅ Timezone Database Initialized');
+    
     await NotificationService.init();
-    print("✅ Notification Service Initialized");
+    print('✅ Notification Service Initialized');
+    
+    // Schedule all timetable classes automatically
+    await NotificationService.scheduleTimetable();
+    print('✅ Timetable Notifications Scheduled');
     
     // Start listening for news updates
     NewsService.listenForUpdates();

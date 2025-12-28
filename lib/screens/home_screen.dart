@@ -28,9 +28,11 @@ import '../modules/academic/books_notes_screen.dart';
 import '../modules/roadmaps/roadmaps_screen.dart';
 import '../modules/programming_hub/programming_hub_screen.dart';
 import '../modules/ai/nova_chat_screen.dart';
+import '../screens/engineering/engineering_hub.dart';
 import '../modules/community/community_books_screen.dart';
 import '../modules/study_companion/study_companion_screen.dart';
 import '../modules/social_learning/social_learning_screen.dart';
+import '../modules/cybersecurity/cybersecurity_hub_screen.dart';
 import 'timetable_screen.dart';
 import 'calendar_screen.dart';
 import 'library_screen.dart';
@@ -825,6 +827,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 );
               },
             ),
+            _buildAnimatedDrawerItem(
+              icon: Icons.engineering_outlined,
+              title: 'Engineering Hub',
+              subtitle: 'Graphics & Diagrams',
+              color: Colors.orangeAccent,
+              delay: 1015,
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const EngineeringHub(),
+                  ),
+                );
+              },
+            ),
             // Flux AI Chat
             _buildAnimatedDrawerItem(
               icon: Icons.auto_awesome,
@@ -934,6 +952,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const LeaderboardScreen(),
+                  ),
+                );
+              },
+            ),
+
+            _buildAnimatedDrawerItem(
+              icon: Icons.security,
+              title: 'Cybersecurity Tools',
+              color: Colors.red,
+              delay: 1150,
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CybersecurityHubScreen(),
                   ),
                 );
               },

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
+import '../models/class_session.dart';
 
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _notifications =
@@ -23,10 +27,47 @@ class NotificationService {
             AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
     
+    // Setup notification channels
+    await setupNotificationChannels();
+    
     // Note: FCM push notifications require Firebase setup:
     // 1. Add firebase_core and firebase_messaging to pubspec.yaml
     // 2. Run flutterfire configure to generate google-services.json
     // 3. Uncomment _setupFCM() below after configuration
+  }
+  
+  /// Setup Android notification channels for better user control
+  static Future<void> setupNotificationChannels() async {
+    final androidPlatform = _notifications.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
+
+    if (androidPlatform == null) return;
+
+    // Channel 1: Class Alerts (High frequency, user can disable)
+    const classChannel = AndroidNotificationChannel(
+      'class_alerts',
+      'Class Reminders',
+      description: 'Notifications for daily timetable classes',
+      importance: Importance.high, // High but not max - less intrusive
+      playSound: true,
+      enableVibration: true,
+    );
+
+    // Channel 2: News & Updates (Low frequency, critical)
+    const newsChannel = AndroidNotificationChannel(
+      'news_channel',
+      'College News',
+      description: 'Important updates about exams, events, and holidays',
+      importance: Importance.max, // Maximum importance for critical updates
+      playSound: true,
+      enableVibration: true,
+    );
+
+    // Create channels in Android system
+    await androidPlatform.createNotificationChannel(classChannel);
+    await androidPlatform.createNotificationChannel(newsChannel);
+    
+    print('✅ Notification channels created');
   }
   
   /// Get the last notified news ID from Hive
@@ -164,5 +205,179 @@ class NotificationService {
     await box.delete('last_notified_news_id');
     await box.delete('last_news_open_time');
     _onUnreadCountChanged?.call(0);
+  }
+
+  // ==================== CLASS NOTIFICATION SYSTEM ====================
+  
+  /// Calculate next occurrence of specific day/time
+  static tz.TZDateTime _nextInstanceOfDayAndTime(int dayOfWeek, int hour, int minute) {
+    final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    
+    // Create date for today with target time
+    tz.TZDateTime scheduledDate = tz.TZDateTime(
+      tz.local, 
+      now.year, 
+      now.month, 
+      now.day, 
+      hour, 
+      minute
+    );
+
+    // Adjust to correct day of week (Monday=1, Sunday=7)
+    while (scheduledDate.weekday != dayOfWeek) {
+      scheduledDate = scheduledDate.add(const Duration(days: 1));
+    }
+
+    // If time passed this week, schedule for next week
+    if (scheduledDate.isBefore(now)) {
+      scheduledDate = scheduledDate.add(const Duration(days: 7));
+    }
+
+    return scheduledDate;
+  }
+
+  /// Schedule class alerts (10-min and 5-min warnings)
+  static Future<void> scheduleClassAlerts({
+    required int id,           // Unique class ID from database
+    required String className, 
+    required int dayOfWeek,    // 1=Mon, 2=Tue, ..., 7=Sun
+    required int classHour,    // 24-hour format (e.g., 10 for 10 AM)
+    required int classMinute,  
+  }) async {
+    
+    // 🛑 CHECK: Are class reminders enabled?
+    final prefs = await SharedPreferences.getInstance();
+    final bool isEnabled = prefs.getBool('class_reminders_enabled') ?? true;
+
+    if (!isEnabled) {
+      print('⏭️ Skipping $className: Reminders disabled by user');
+      return; // Exit early
+    }
+
+    // --- ALERT 1: 10 Minutes Before ---
+    final tenMinBefore = _nextInstanceOfDayAndTime(dayOfWeek, classHour, classMinute)
+        .subtract(const Duration(minutes: 10));
+
+    await _notifications.zonedSchedule(
+      id * 10, // Unique ID (e.g., Class 5 → Notification 50)
+      '🔔 Class Starting Soon!',
+      '$className starts in 10 minutes',
+      tenMinBefore,
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'class_alerts',
+          'Class Alerts',
+          channelDescription: 'Reminders for upcoming classes',
+          importance: Importance.max,
+          priority: Priority.high,
+          color: Color(0xFF00FFFF),
+          playSound: true,
+          enableVibration: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle, // 🔴 Moved here
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime, // 🔄 Repeats weekly
+    );
+
+    // --- ALERT 2: 5 Minutes Before ---
+    final fiveMinBefore = _nextInstanceOfDayAndTime(dayOfWeek, classHour, classMinute)
+        .subtract(const Duration(minutes: 5));
+
+    await _notifications.zonedSchedule(
+      id * 10 + 1, // Unique ID (e.g., Class 5 → Notification 51)
+      '⚡ Hurry Up!',
+      '$className starts in 5 minutes',
+      fiveMinBefore,
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'class_alerts', 
+          'Class Alerts',
+          channelDescription: 'Reminders for upcoming classes',
+          importance: Importance.high,
+          priority: Priority.high,
+          color: Color(0xFF00FFFF),
+          playSound: true,
+          enableVibration: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle, // 🔴 Moved here
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime, // 🔄 Repeats weekly
+    );
+    
+    print('✅ Scheduled alerts for $className (Day $dayOfWeek at $classHour:$classMinute)');
+  }
+
+  /// Cancel specific class alerts
+  static Future<void> cancelClassAlerts(int classId) async {
+    await _notifications.cancel(classId * 10);     // 10-min alert
+    await _notifications.cancel(classId * 10 + 1); // 5-min alert
+    print('🔕 Cancelled alerts for class ID $classId');
+  }
+
+  /// Cancel ALL class alerts
+  static Future<void> cancelAllClassAlerts() async {
+    // Note: This cancels ALL notifications. If you have other types,
+    // you should track class notification IDs and cancel them specifically
+    await _notifications.cancelAll();
+    print('🔕 Cancelled all class alerts');
+  }
+
+  // ==================== TIMETABLE INTEGRATION ====================
+  
+  /// Schedule all classes from timetable automatically
+  static Future<void> scheduleTimetable() async {
+    try {
+      // Check if Exam Mode is ON
+      final prefs = await SharedPreferences.getInstance();
+      if (prefs.getBool('exam_mode_enabled') == true) {
+        print('📚 Exam Mode is active. Skipping scheduling.');
+        return;
+      }
+
+      // Check if class reminders are enabled
+      final bool isEnabled = prefs.getBool('class_reminders_enabled') ?? true;
+      if (!isEnabled) {
+        print('⏭️ Class reminders disabled. Skipping scheduling.');
+        return;
+      }
+
+      // Get all classes from Hive
+      final box = Hive.isBoxOpen('class_sessions')
+          ? Hive.box<ClassSession>('class_sessions')
+          : await Hive.openBox<ClassSession>('class_sessions');
+      
+      final allClasses = box.values.toList();
+      
+      if (allClasses.isEmpty) {
+        print('⚠️ No classes found in timetable');
+        return;
+      }
+
+      // Clear old alarms to avoid duplicates
+      await cancelAllClassAlerts();
+
+      // Schedule each class
+      int scheduled = 0;
+      for (var session in allClasses) {
+        try {
+          await scheduleClassAlerts(
+            id: session.id.hashCode.abs(), // Use hash of ID for unique int
+            className: session.subjectName,
+            dayOfWeek: session.dayOfWeek,
+            classHour: session.startTime.hour,
+            classMinute: session.startTime.minute,
+          );
+          scheduled++;
+        } catch (e) {
+          print('❌ Error scheduling ${session.subjectName}: $e');
+        }
+      }
+      
+      print('✅ Scheduled $scheduled classes from timetable');
+    } catch (e) {
+      print('❌ Error in scheduleTimetable: $e');
+    }
   }
 }
